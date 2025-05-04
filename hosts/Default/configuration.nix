@@ -32,10 +32,10 @@
     ../../modules/programs/cli/btop
     ../../modules/programs/shell/bash
     ../../modules/programs/shell/zsh
-    ../../modules/programs/media/discord
+    #../../modules/programs/media/discord
     ../../modules/programs/media/spicetify
     # ../../modules/programs/media/youtube-music
-    ../../modules/programs/media/thunderbird
+    #../../modules/programs/media/thunderbird
     # ../../modules/programs/media/obs-studio
     ../../modules/programs/media/mpv
     ../../modules/programs/misc/tlp
@@ -52,7 +52,7 @@
         # pokego # Overlayed
         # lact # Overlayed [LONG COMPILE]
         krita
-        gimp
+        #gimp
         github-desktop
       ];
     })
@@ -64,26 +64,4 @@
 
   networking.hostName = hostname; # Set hostname defined in flake.nix
 
-  # Stream my media to my devices via the network
-  services.minidlna = {
-    enable = true;
-    openFirewall = true;
-    settings = {
-      friendly_name = "NixOS-DLNA";
-      media_dir = [
-        # A = Audio, P = Pictures, V, = Videos, PV = Pictures and Videos.
-        # "A,/mnt/work/Pimsleur/Russian"
-        "/mnt/work/Pimsleur"
-        "/mnt/work/Media/Films"
-        "/mnt/work/Media/Series"
-        "/mnt/work/Media/Videos"
-        "/mnt/work/Media/Music"
-      ];
-      inotify = "yes";
-      log_level = "error";
-    };
-  };
-  users.users.minidlna = {
-    extraGroups = ["users"]; # so minidlna can access the files.
-  };
 }

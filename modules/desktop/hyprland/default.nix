@@ -111,8 +111,10 @@
             "NIXPKGS_ALLOW_UNFREE,1"
           ];
           exec-once = [
-            #"[workspace 1 silent] ${terminal}"
-            #"[workspace 5 silent] ${browser}"
+            # Launch apps without workspace assignment here, rely on windowrule below
+            "$term"
+            "$browser"
+            "$editor"
             #"[workspace 6 silent] spotify"
             #"[workspace special silent] ${browser} --private-window"
             #"[workspace special silent] ${terminal}"
@@ -129,6 +131,7 @@
             # "${./scripts/autowaybar.sh}" # uncomment packages at the top
             "polkit-agent-helper-1"
             "pamixer --set-volume 50"
+            "sh -c 'sleep 1 && hyprctl dispatch workspace 2'" # Default to workspace 2 after a short delay
           ];
           input = {
             kb_layout = "${kbdLayout},ru";
@@ -241,10 +244,16 @@
             new_on_top = true;
             mfact = 0.5;
           };
-          windowrule = [
+          # windowrule is deprecated, use windowrulev2
+          windowrulev2 = [
+            # Assign startup apps to workspaces
+            "workspace 1, class:^(kitty)$"             # Assuming $term resolves to kitty based on line 227
+            "workspace 2, class:^(firefox)$"           # Assuming $browser resolves to firefox based on line 264
+            "workspace 3, class:^(code)$"              # Assuming $editor resolves to code based on line 273
+
             #"noanim, class:^(Rofi)$
             "tile,title:(.*)(Godot)(.*)$"
-            # "workspace 1, class:^(kitty|Alacritty|org.wezfurlong.wezterm)$"
+            # "workspace 1, class:^(kitty|Alacritty|org.wezfurlong.wezterm)$" # Old rule
             # "workspace 2, class:^(code|VSCodium|code-url-handler|codium-url-handler)$"
             # "workspace 3, class:^(krita)$"
             # "workspace 3, title:(.*)(Godot)(.*)$"
@@ -315,6 +324,7 @@
             "float,class:^(nm-connection-editor)$"
             "float,class:^(org.kde.polkit-kde-authentication-agent-1)$"
           ];
+          windowrule = [ ]; # Ensure old windowrule list is empty or removed if windowrulev2 is used exclusively
           binde = [
             # Resize windows
             "$mainMod SHIFT, right, resizeactive, 30 0"
@@ -342,7 +352,7 @@
               "$mainMod CTRL, K, exec, ${./scripts/keybinds.sh}"
 
               # Night Mode (lower value means warmer temp)
-              "$mainMod, F9, exec, ${getExe pkgs.hyprsunset} --temperature 3500" # good values: 3500, 3000, 2500
+              # "$mainMod, F9, exec, ${getExe pkgs.hyprsunset} --temperature 3500" # good values: 3500, 3000, 2500 - Replaced by workspace switch
               "$mainMod, F10, exec, pkill hyprsunset"
 
               # Window/Session actions
@@ -402,9 +412,9 @@
               "$mainMod, Tab, cyclenext"
               "$mainMod, Tab, bringactivetotop"
 
-              # Switch workspaces relative to the active workspace with mainMod + CTRL + [←→]
-              "$mainMod CTRL, right, workspace, r+1"
-              "$mainMod CTRL, left, workspace, r-1"
+              # Switch workspaces relative to the active workspace with CTRL + [←→]
+              "CTRL, right, workspace, r+1"
+              "CTRL, left, workspace, r-1"
 
               # move to the first empty workspace instantly with mainMod + CTRL + [↓]
               "$mainMod CTRL, down, workspace, empty"
@@ -457,6 +467,11 @@
               "$mainMod CTRL, S, movetoworkspacesilent, special"
               "$mainMod ALT, S, movetoworkspacesilent, special"
               "$mainMod, S, togglespecialworkspace,"
+
+              # Direct workspace access with F keys
+              ", F12, workspace, 1" # Terminal
+              ", F8, workspace, 2"  # Firefox
+              ", F9, workspace, 3"  # VS Code
             ]
             ++ (builtins.concatLists (builtins.genList (x: let
                 ws = let

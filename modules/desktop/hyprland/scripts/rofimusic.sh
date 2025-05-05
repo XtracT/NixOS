@@ -38,12 +38,24 @@ declare -A menu_options
 for key in "${!no_shuffle[@]}"; do menu_options["$key"]="${no_shuffle[$key]}"; done
 for key in "${!shuffle[@]}"; do menu_options["$key"]="${shuffle[$key]}"; done
 
-# Function for displaying notifications
 notification() {
+  # Default icon
+  local icon="$iDIR/music.png"
+
+  # Try to get album art (if ytdl-hook plugin is enabled in mpv)
+  # if [ -S "$MPV_SOCKET" ] && [[ "$2" == *"playlist"* ]]; then
+  #   thumbnail_url=$(echo '{"command": ["get_property", "metadata/by-key/thumbnail"]}' | socat - "$MPV_SOCKET" 2>/dev/null | jq -r '.data // empty')
+  #   if [ -n "$thumbnail_url" ] && [ "$thumbnail_url" != "null" ]; then
+  #     # Download thumbnail to temp file and use it
+  #     temp_thumb="${XDG_RUNTIME_DIR:-/tmp}/mpv_thumb.jpg"
+  #     curl -s "$thumbnail_url" -o "$temp_thumb"
+  #     icon="$temp_thumb"
+  #   fi
+  # fi
+
   notify-send -e -t 2500 -u normal -i "$iDIR/music.png" "Playing now: $1"
 }
 
-# Main function
 main() {
   # TODO: increase this value if adding more playlists
   r_override="entry{placeholder:'Search Music...';}listview{lines:10;}"
@@ -55,7 +67,7 @@ main() {
 
   link="${menu_options[$choice]}"
 
-  notification "$choice"
+  # notification "$choice"
 
   # Check if the link is a playlist and handle shuffling
   if [[ $link == *playlist* ]]; then

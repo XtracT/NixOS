@@ -8,6 +8,7 @@
     (_: {
       programs.vscode = {
         enable = true;
+        mutableExtensionsDir = true; # Allow extensions to write to their directories
         # package = pkgs.vscodium;
         package = pkgs.vscode;
         profiles.default = {

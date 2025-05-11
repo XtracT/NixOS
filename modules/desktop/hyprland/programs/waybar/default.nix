@@ -26,7 +26,7 @@
             modules-left = ["hyprland/workspaces" "cava"];
             # modules-center = ["clock" "custom/notification"];
             modules-center = ["idle_inhibitor" "clock"];
-            modules-right = ["custom/gpuinfo" "cpu" "memory" "pulseaudio" "backlight" "network" "bluetooth" "tray" "battery"];
+            modules-right = ["custom/gpuinfo" "cpu" "memory" "backlight" "pulseaudio" "bluetooth" "network" "tray" "battery"];
 
             "custom/notification" = {
               tooltip = false;
@@ -68,6 +68,7 @@
               # "noise_reduction" = 0.77;
               sleep_timer = 5;
               bar_delimiter = 0;
+              on-click = "playerctl play-pause";
             };
             "custom/gpuinfo" = {
               exec = "${../../scripts/gpuinfo.sh}";

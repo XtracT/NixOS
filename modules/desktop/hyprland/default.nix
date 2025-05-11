@@ -344,12 +344,17 @@
             ",XF86AudioLowerVolume,exec,pamixer -d 2"
             ",XF86AudioRaiseVolume,exec,pamixer -i 2"
           ];
-          bind =
+          bind = let
+            autoclicker = pkgs.callPackage ./scripts/autoclicker.nix {};
+          in
             [
               # Keybinds help menu
               "$mainMod, question, exec, ${./scripts/keybinds.sh}"
               "$mainMod, slash, exec, ${./scripts/keybinds.sh}"
               "$mainMod CTRL, K, exec, ${./scripts/keybinds.sh}"
+
+              "$mainMod, F8, exec, kill $(cat /tmp/auto-clicker.pid) 2>/dev/null || ${lib.getExe autoclicker} --cps 40"
+              # "$mainMod ALT, mouse:276, exec, kill $(cat /tmp/auto-clicker.pid) 2>/dev/null || ${lib.getExe autoclicker} --cps 60"
 
               # Night Mode (lower value means warmer temp)
               # "$mainMod, F9, exec, ${getExe pkgs.hyprsunset} --temperature 3500" # good values: 3500, 3000, 2500 - Replaced by workspace switch
@@ -366,12 +371,14 @@
               "$mainMod, backspace, exec, pkill -x wlogout || wlogout -b 4" # logout menu
               "$CONTROL, ESCAPE, exec, pkill waybar || waybar" # toggle waybar
 
+              # Applications/Programs
               "$mainMod, Return, exec, $term"
               "$mainMod, T, exec, $term"
               "$mainMod, E, exec, $fileManager"
               "$mainMod, C, exec, $editor"
               "$mainMod, F, exec, $browser"
               "$mainMod SHIFT, S, exec, spotify"
+              "$mainMod SHIFT, Y, exec, youtube-music"
               "$CONTROL ALT, DELETE, exec, $term -e '${getExe pkgs.btop}'" # System Monitor
               "$mainMod CTRL, C, exec, hyprpicker --autocopy --format=hex" # Colour Picker
 

@@ -112,9 +112,9 @@
           ];
           exec-once = [
             # Launch apps without workspace assignment here, rely on windowrule below
-            "$term"
-            "$browser"
-            "$editor"
+            "[workspace 1 silent] $term"
+            "[workspace 2 silent] $browser"
+            "[workspace 3 silent] $editor"
             #"[workspace 6 silent] spotify"
             #"[workspace special silent] ${browser} --private-window"
             #"[workspace special silent] ${terminal}"
@@ -247,9 +247,9 @@
           # windowrule is deprecated, use windowrulev2
           windowrulev2 = [
             # Assign startup apps to workspaces
-            "workspace 1, class:^(kitty)$"             # Assuming $term resolves to kitty based on line 227
-            "workspace 2, class:^(firefox)$"           # Assuming $browser resolves to firefox based on line 264
-            "workspace 3, class:^(code)$"              # Assuming $editor resolves to code based on line 273
+            #"workspace 1, class:^(kitty|Alacritty|org.wezfurlong.wezterm)$" # More robust terminal matching
+            #"workspace 2, class:^(firefox|Firefox|Brave-browser|brave-browser|zen|floorp)$" # More robust browser matching for workspace 2
+            #"workspace 3, class:^(code|Code|VSCodium|codium)$"              # More robust editor matching
 
             #"noanim, class:^(Rofi)$
             "tile,title:(.*)(Godot)(.*)$"

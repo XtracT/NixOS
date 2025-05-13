@@ -111,7 +111,7 @@
             "NIXPKGS_ALLOW_UNFREE,1"
           ];
           exec-once = [
-            # Launch apps without workspace assignment here, rely on windowrule below
+            "sh -c 'hyprctl dispatch workspace 2'"
             "[workspace 1 silent] $term"
             "[workspace 2 silent] $browser"
             "[workspace 3 silent] $editor"
@@ -131,7 +131,7 @@
             # "${./scripts/autowaybar.sh}" # uncomment packages at the top
             "polkit-agent-helper-1"
             "pamixer --set-volume 50"
-            "sh -c 'sleep 1 && hyprctl dispatch workspace 2'" # Default to workspace 2 after a short delay
+            "sh -c 'sleep 3 && hyprctl dispatch workspace 2'" # Default to workspace 2 after a short delay
           ];
           input = {
             kb_layout = "${kbdLayout},ru";
@@ -247,9 +247,9 @@
           # windowrule is deprecated, use windowrulev2
           windowrulev2 = [
             # Assign startup apps to workspaces
-            #"workspace 1, class:^(kitty|Alacritty|org.wezfurlong.wezterm)$" # More robust terminal matching
-            #"workspace 2, class:^(firefox|Firefox|Brave-browser|brave-browser|zen|floorp)$" # More robust browser matching for workspace 2
-            #"workspace 3, class:^(code|Code|VSCodium|codium)$"              # More robust editor matching
+            "workspace 1, class:^(kitty|Alacritty|org.wezfurlong.wezterm)$" # More robust terminal matching
+            "workspace 2, class:^(firefox|Firefox|Brave-browser|brave-browser|zen|floorp)$" # More robust browser matching for workspace 2
+            "workspace 3, class:^(code|Code|VSCodium|codium)$"              # More robust editor matching
 
             #"noanim, class:^(Rofi)$
             "tile,title:(.*)(Godot)(.*)$"

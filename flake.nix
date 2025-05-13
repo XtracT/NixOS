@@ -49,11 +49,11 @@
       # User configuration
       username = "xtract"; # automatically set with install.sh and live-install.sh
       editor = "vscode"; # nixvim, vscode, nvchad, neovim, emacs (WIP)
-      browser = "zen"; # firefox, floorp, zen
+      browser = "firefox"; # firefox, floorp, zen
       terminal = "kitty"; # kitty, alacritty, wezterm
       terminalFileManager = "yazi"; # yazi or lf
       sddmTheme = "astronaut"; # astronaut, black_hole, purple_leaves, jake_the_dog, hyprland_kath
-      wallpaper = "kurzgesagt.png"; # see modules/themes/wallpapers
+      wallpaper = "kurzgesagt"; # see modules/themes/wallpapers
 
       # System configuration
       videoDriver = "intel"; # CHOOSE YOUR GPU DRIVERS (nvidia or amdgpu or intel) THIS IS IMPORTANT

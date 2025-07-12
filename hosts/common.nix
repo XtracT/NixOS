@@ -98,7 +98,7 @@
     loader = {
       efi.canTouchEfiVariables = true;
       efi.efiSysMountPoint = "/boot";
-      timeout = null; # Display bootloader indefinitely until user selects OS
+      timeout = 3; # Display bootloader for 3 seconds
       grub = {
         enable = true;
         device = "nodev";
@@ -260,6 +260,7 @@
     pkgs.kdePackages.qtmultimedia
     pkgs.kdePackages.qtvirtualkeyboard
     # libsForQt5.qt5.qtgraphicaleffects
+
 
     # devenv
     # devbox

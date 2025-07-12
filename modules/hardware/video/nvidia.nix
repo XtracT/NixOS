@@ -12,7 +12,7 @@ in {
     WLR_NO_HARDWARE_CURSORS = "1";
     LIBVA_DRIVER_NAME = "nvidia";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    MOZ_DISABLE_RDD_SANDBOX = 1; # Potential security risk
+    # MOZ_DISABLE_RDD_SANDBOX = 1; # Potential security risk
 
     __GL_GSYNC_ALLOWED = "1"; # GSync
   };
@@ -45,6 +45,7 @@ in {
   };
   nixpkgs.config = {
     nvidia.acceptLicense = true;
+    cudaSupport = true;
     allowUnfreePredicate = pkg:
       builtins.elem (lib.getName pkg) [
         "cudatoolkit"

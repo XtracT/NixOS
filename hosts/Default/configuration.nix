@@ -40,9 +40,9 @@
     ../../modules/programs/media/mpv
     ../../modules/programs/misc/tlp
     ../../modules/programs/misc/thunar
+    ../../modules/programs/misc/lact # GPU fan, clock and power configuration
     # ../../modules/programs/misc/nix-ld
     # ../../modules/programs/misc/virt-manager
-    # ../../modules/programs/misc/lact # gpu power and fan control (WIP)
   ];
 
   # Home-manager config
@@ -50,10 +50,9 @@
     (_: {
       home.packages = with pkgs; [
         # pokego # Overlayed
-        # lact # Overlayed [LONG COMPILE]
-        krita
-        #gimp
+        # krita
         github-desktop
+        # gimp
       ];
     })
   ];

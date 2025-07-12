@@ -219,7 +219,11 @@
           render = {
             explicit_sync = 2; # 0 = off, 1 = on, 2 = auto based on gpu driver.
             explicit_sync_kms = 2; # 0 = off, 1 = on, 2 = auto based on gpu driver.
-            direct_scanout = false; # Set to true for less Fullscreen game lag (may cause glitches).
+            direct_scanout = 2; # 0 = off, 1 = on, 2 = auto (on with content type ‘game’) 
+          };
+          ecosystem = {
+            no_update_news = true;
+            no_donation_nag = true;
           };
           misc = {
             disable_hyprland_logo = true;
@@ -269,6 +273,7 @@
             "opacity 0.90 0.90,title:^(Hyprland Polkit Agent)$" # polkit prompt
             "opacity 1.00 1.00,class:^(firefox)$"
             "opacity 0.90 0.90,class:^(Brave-browser)$"
+            "opacity 0.80 0.80,class:^(thunar)$"
             "opacity 0.80 0.80,class:^(Steam)$"
             "opacity 0.80 0.80,class:^(steam)$"
             "opacity 0.80 0.80,class:^(steamwebhelper)$"
@@ -305,6 +310,21 @@
             "opacity 0.80 0.70,class:^(nm-applet)$"
             "opacity 0.80 0.70,class:^(nm-connection-editor)$"
             "opacity 0.80 0.70,class:^(org.kde.polkit-kde-authentication-agent-1)$"
+
+            "content game, tag:games"
+            "tag +games, content:game"
+            "tag +games, class:^(steam_app.*|steam_app_\d+)$"
+            "tag +games, class:^(gamescope)$"
+            "tag +games, class:(Waydroid)"
+            "tag +games, class:(osu!)"
+
+            # Games
+            "syncfullscreen,tag:games"
+            "fullscreen,tag:games"
+            "noborder 1,tag:games"
+            "noshadow,tag:games"
+            "noblur,tag:games"
+            "noanim,tag:games"
 
             "float,class:^(qt5ct)$"
             "float,class:^(nwg-look)$"

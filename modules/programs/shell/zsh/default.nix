@@ -159,6 +159,10 @@
             cmake -B build
             cmake --build build
           }
+
+         if [[ "$TERM" == "xterm-kitty" ]]; then
+           alias ssh="TERM=xterm-256color ssh"
+         fi
         '';
         envExtra = ''
           # Defaults

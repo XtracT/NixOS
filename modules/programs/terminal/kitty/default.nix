@@ -40,6 +40,8 @@
           "ctrl+alt+n" = "launch --cwd=current";
           "alt+w" = "copy_and_clear_or_interrupt";
           "ctrl+y" = "paste_from_clipboard";
+          "ctrl+insert" = "copy_to_clipboard";
+          "shift+insert" = "paste_from_clipboard";
           "alt+1" = "goto_tab 1";
           "alt+2" = "goto_tab 2";
           "alt+3" = "goto_tab 3";

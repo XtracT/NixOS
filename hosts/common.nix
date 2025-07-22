@@ -78,6 +78,7 @@
         ripgrep
         tldr
         unzip
+        wget
       ];
     };
   };

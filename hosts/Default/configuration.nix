@@ -46,16 +46,17 @@
   ];
 
   # Home-manager config
-  # home-manager.sharedModules = [
-  #   (_: {
-  #     home.packages = with pkgs; [
-  #       # pokego # Overlayed
-  #       # krita
-  #       github-desktop
-  #       # gimp
-  #     ];
-  #   })
-  # ];
+  home-manager.sharedModules = [
+    (_: {
+      home.packages = with pkgs; [
+        # pokego # Overlayed
+        # krita
+        github-desktop
+        # gimp
+        # obsidian
+      ];
+    })
+  ];
 
   # Define system packages here
   environment.systemPackages = with pkgs; [

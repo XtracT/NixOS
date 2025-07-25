@@ -32,6 +32,7 @@
       "libvirtd"
       "video"
       "audio"
+      "docker"
     ];
   };
 
@@ -278,6 +279,7 @@
   };
 
   # List services that you want to enable:
+  virtualisation.docker.enable = true;
 
   # Enable the OpenSSH daemon.
   /*

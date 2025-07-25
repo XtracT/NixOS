@@ -82,6 +82,7 @@
         tldr
         unzip
         wget
+        usbutils
       ];
     };
   };

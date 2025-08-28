@@ -40,7 +40,9 @@
     # ../../modules/programs/media/thunderbird
     # ../../modules/programs/media/obs-studio
     ../../modules/programs/media/mpv
-    ../../modules/programs/misc/tlp
+    # Choose ONE of the following power management solutions (not both to avoid conflicts):
+    ../../modules/programs/misc/tlp # Comprehensive laptop power management
+    # ../../modules/programs/misc/cpufreq # CPU frequency scaling only (simpler alternative)
     ../../modules/programs/misc/thunar
     ../../modules/programs/misc/lact # GPU fan, clock and power configuration
     # ../../modules/programs/misc/nix-ld

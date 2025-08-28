@@ -3,6 +3,7 @@
   videoDriver,
   hostname,
   browser,
+  browser2,
   editor,
   terminal,
   terminalFileManager,
@@ -21,6 +22,7 @@
 
     #../../modules/programs/games
     ../../modules/programs/browser/${browser} # Set browser defined in flake.nix
+    ../../modules/programs/browser/${browser2} # Set browser defined in flake.nix
     ../../modules/programs/terminal/${terminal} # Set terminal defined in flake.nix
     ../../modules/programs/editor/${editor} # Set editor defined in flake.nix
     ../../modules/programs/cli/${terminalFileManager} # Set file-manager defined in flake.nix
@@ -62,6 +64,7 @@
   environment.systemPackages = with pkgs; [
   ];
 
+  nixpkgs.config.allowUnfree = true;
   networking.hostName = hostname; # Set hostname defined in flake.nix
 
 }

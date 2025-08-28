@@ -49,7 +49,8 @@
       # User configuration
       username = "xtract"; # automatically set with install.sh and live-install.sh
       editor = "vscode"; # nixvim, vscode, nvchad, neovim, emacs (WIP)
-      browser = "firefox"; # firefox, floorp, zen
+      browser = "firefox"; # firefox, floorp, zen, chrome
+      browser2 = "chrome"; # firefox, floorp, zen, chrome, none
       terminal = "kitty"; # kitty, alacritty, wezterm
       terminalFileManager = "yazi"; # yazi or lf
       sddmTheme = "astronaut"; # astronaut, black_hole, purple_leaves, jake_the_dog, hyprland_kath

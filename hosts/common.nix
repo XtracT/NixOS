@@ -266,6 +266,12 @@
     pkgs.kdePackages.qtvirtualkeyboard
     # libsForQt5.qt5.qtgraphicaleffects
 
+    # Monitoring tools
+    htop           # Interactive process viewer (essential)
+    pciutils       # PCI device information (lspci)
+    usbutils       # USB device information (already exists in home.packages)
+    lsof           # List open files and network connections
+    strace         # System call tracer for debugging
 
     # devenv
     # devbox

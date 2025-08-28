@@ -76,6 +76,9 @@
     "i915.fastboot=1" # Skip unnecessary display modes
     "i915.enable_dc=2" # Display power management for Intel graphics
     "iwlwifi.power_save=1" # WiFi power saving
+    # NVMe SSD power management for extended battery life
+    "nvme_core.default_ps_max_latency_us=100000" # Power state transition time (100ms)
+    "ahci.mobile_lpm_policy=3" # Aggressive link power management for SATA
   ];
 
   # Logind settings for laptop lid events

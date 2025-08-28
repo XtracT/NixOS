@@ -40,9 +40,9 @@
     # ../../modules/programs/media/thunderbird
     # ../../modules/programs/media/obs-studio
     ../../modules/programs/media/mpv
-    # Choose ONE of the following power management solutions (not both to avoid conflicts):
-    ../../modules/programs/misc/tlp # Comprehensive laptop power management
-    # ../../modules/programs/misc/cpufreq # CPU frequency scaling only (simpler alternative)
+    # Power management solutions (can run together with different focus areas):
+    ../../modules/programs/misc/tlp # Comprehensive system power management
+    # ../../modules/programs/misc/cpufreq # Alternative CPU-focused power management
     ../../modules/programs/misc/thunar
     ../../modules/programs/misc/lact # GPU fan, clock and power configuration
     # ../../modules/programs/misc/nix-ld
@@ -68,5 +68,49 @@
 
   nixpkgs.config.allowUnfree = true;
   networking.hostName = hostname; # Set hostname defined in flake.nix
+
+  # Laptop-specific boot parameters
+  boot.kernelParams = [
+    "i915.enable_psr=1" # Panel Self Refresh for better battery life on Intel graphics
+    "i915.enable_fbc=1" # Framebuffer compression for Intel graphics
+    "i915.fastboot=1" # Skip unnecessary display modes
+    "i915.enable_dc=2" # Display power management for Intel graphics
+    "iwlwifi.power_save=1" # WiFi power saving
+  ];
+
+  # Logind settings for laptop lid events
+  services.logind = {
+    lidSwitch = "suspend";
+    lidSwitchExternalPower = "suspend";
+    extraConfig = ''
+      HandlePowerKey=suspend
+      HandlePowerKeyLongPress=poweroff
+      IdleAction=suspend
+      IdleActionSec=1800
+    '';
+  };
+
+
+  # Enable firmware updates for device firmware
+  services.fwupd.enable = true;
+
+  # Network manager power saving
+  networking.networkmanager.wifi.powersave = true;
+
+  # Enable Blueman for Bluetooth management
+  services.blueman.enable = true;
+
+  # Add suspend-then-hibernate support
+  systemd.sleep.extraConfig = ''
+    SuspendMode=suspend-then-hibernate
+    HibernateDelaySec=1800
+  '';
+
+  # Improve swap performance for laptops
+  zramSwap.enable = true; # Compressed RAM swap
+  swapDevices = [{
+    device = "/var/lib/swapfile";
+    size = 8 * 1024; # 8GB swap file for hibernation support
+  }];
 
 }

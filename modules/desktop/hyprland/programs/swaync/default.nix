@@ -19,7 +19,7 @@
           notification-body-image-width = 200;
           timeout = 6;
           timeout-low = 3;
-          timeout-critical = 0;
+          timeout-critical = 10;
           fit-to-screen = false;
           control-center-width = 400;
           control-center-height = 915;

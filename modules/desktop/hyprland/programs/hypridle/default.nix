@@ -13,18 +13,22 @@
           };
           listener = [
             {
-              timeout = 300; # 5 Minutes
+              timeout = 300; # 5 Minutes - Lock screen
               on-timeout = "loginctl lock-session";
             }
-            /* {
-              timeout = 360; # 6 Minutes
+            {
+              timeout = 360; # 6 Minutes - Turn off display
               on-timeout = "hyprctl dispatch dpms off";
               on-resume = "hyprctl dispatch dpms on";
-            } */
-            /* {
-              timeout = 600; # 10m
+            }
+            {
+              timeout = 900; # 15 Minutes - Suspend to RAM
               on-timeout = "systemctl suspend";
-            } */
+            }
+            {
+              timeout = 1800; # 30 Minutes - Hibernate (if enabled)
+              on-timeout = "systemctl hibernate";
+            }
           ];
         };
       };

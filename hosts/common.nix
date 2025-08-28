@@ -33,6 +33,7 @@
       "video"
       "audio"
       "docker"
+      "dialout"
     ];
   };
 

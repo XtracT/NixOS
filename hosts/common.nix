@@ -33,6 +33,8 @@
       "libvirtd"
       "video"
       "audio"
+     "docker"
+     "dialout"
     ];
   };
 
@@ -70,22 +72,24 @@
             # Applications
             #kate
 
-            # Terminal
-            fzf
-            fd
-            git
-            gh
-            htop
-            libjxl
-            microfetch
-            nix-prefetch-scripts
-            ripgrep
-            tldr
-            unrar
-            unzip
-          ];
-        };
+          # Terminal
+          fzf
+          fd
+          git
+          gh
+          htop
+          libjxl
+          microfetch
+          nix-prefetch-scripts
+          ripgrep
+          tldr
+          unrar
+          unzip
+          wget
+          usbutils
+        ];
       };
+    };
   };
 
   # Filesystems support
@@ -117,7 +121,7 @@
     loader = {
       efi.canTouchEfiVariables = true;
       efi.efiSysMountPoint = "/boot";
-      timeout = null; # Display bootloader indefinitely until user selects OS
+      timeout = 3; # Display bootloader for 3 seconds
       grub = {
         enable = true;
         device = "nodev";
@@ -246,7 +250,7 @@
   ];
 
   nixpkgs = {
-    overlays = builtins.attrValues outputs.overlays;
+    overlays = (builtins.attrValues outputs.overlays) ++ [ inputs.nur.overlays.default ];
     config = {
       allowUnfree = true;
       # allowUnfreePredicate = _: true;
@@ -277,6 +281,12 @@
     pkgs.kdePackages.qtvirtualkeyboard
     # libsForQt5.qt5.qtgraphicaleffects
 
+   # Monitoring tools
+   htop           # Interactive process viewer (essential)
+   pciutils       # PCI device information (lspci)
+   usbutils       # USB device information (already exists in home.packages)
+   lsof           # List open files and network connections
+   strace         # System call tracer for debugging
     # devenv
     # devbox
     # shellify
@@ -291,6 +301,7 @@
   };
 
   # List services that you want to enable:
+ virtualisation.docker.enable = true;
 
   # Enable the OpenSSH daemon.
   /*

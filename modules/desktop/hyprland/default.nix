@@ -116,12 +116,9 @@
                 "NIXPKGS_ALLOW_UNFREE,1"
               ];
               exec-once = [
-                #"[workspace 1 silent] ${terminal}"
-                #"[workspace 5 silent] ${browser}"
-                #"[workspace 6 silent] spotify"
-                #"[workspace special silent] ${browser} --private-window"
-                #"[workspace special silent] ${terminal}"
-
+                "[workspace 1 silent] $term"
+                "[workspace 2 silent] $browser"
+                "[workspace 3 silent] $editor"
                 "waybar"
                 "swaync"
                 "nm-applet --indicator"
@@ -247,7 +244,13 @@
                 new_on_top = true;
                 mfact = 0.5;
               };
-              windowrule = [
+              # windowrule is deprecated, use windowrulev2
+              windowrulev2 = [
+                # Assign startup apps to workspaces
+                "workspace 1, class:^(kitty|Alacritty|org.wezfurlong.wezterm)$" # More robust terminal matching
+                "workspace 2, class:^(firefox|Firefox|Brave-browser|brave-browser|zen|floorp)$" # More robust browser matching for workspace 2
+                "workspace 3, class:^(code|Code|VSCodium|codium)$"              # More robust editor matching
+   
                 #"noanim, class:^(Rofi)$
                 "tile,title:(.*)(Godot)(.*)$"
                 # "workspace 1, class:^(kitty|Alacritty|org.wezfurlong.wezterm)$"
@@ -437,7 +440,11 @@
                   # Switch workspaces relative to the active workspace with mainMod + CTRL + [←→]
                   "$mainMod CTRL, right, workspace, r+1"
                   "$mainMod CTRL, left, workspace, r-1"
-
+    
+                  # Switch workspaces with CTRL + [←→]
+                  "CTRL, right, workspace, r+1"
+                  "CTRL, left, workspace, r-1"
+    
                   # move to the first empty workspace instantly with mainMod + CTRL + [↓]
                   "$mainMod CTRL, down, workspace, empty"
 

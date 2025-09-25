@@ -30,10 +30,16 @@
    </div>
 </h1>
 
+> ⚠️ **Custom Fork Notice**: This is a laptop-optimized fork of [Sly-Harvey's excellent NixOS Hyprland setup](https://github.com/Sly-Harvey/NixOS), focused on **battery life, productivity, and portability** rather than gaming performance. I try to keep track of upstream changes and merge from time to time, while tailoring configurations to my personal needs and workflows.
+>
+> 💻 **Perfect for**: Developer laptops with Intel/AMD processors seeking **20-30% longer battery life** and professional workflows.
+<details>
+
 ![Screenshot](assets/preview1.png)
 ![Screenshot](assets/preview2.png)
-<details>
+
 <summary>More Previews</summary>
+
 
 ![Screenshot](assets/preview3.png)
 ![Screenshot](assets/preview4.png)
@@ -91,13 +97,13 @@ nix develop
 <!-- <summary>Credits/Inspiration</summary> -->
 
 ### Credits/Inspiration
-| Credit                                                              |  Reason                                |
-|---------------------------------------------------------------------|----------------------------------------|
-| [Hyprland-Dots](https://github.com/JaKooLit/Hyprland-Dots)          | Script and Waybar templates            |
-| [HyDE](https://github.com/HyDE-Project/HyDE)                        | Some more useful scripts               |
-| [rofi](https://github.com/adi1090x/rofi)                            | Rofi launcher templates                |
-| [dev-templates](https://github.com/the-nix-way/dev-templates)       | Development templates                  |
-| [Vimjoyer](https://www.youtube.com/@vimjoyer)                       | Short, simple, concise guides and info |
+| Credit                                                        | Reason                                 |
+| ------------------------------------------------------------- | -------------------------------------- |
+| [Hyprland-Dots](https://github.com/JaKooLit/Hyprland-Dots)    | Script and Waybar templates            |
+| [HyDE](https://github.com/HyDE-Project/HyDE)                  | Some more useful scripts               |
+| [rofi](https://github.com/adi1090x/rofi)                      | Rofi launcher templates                |
+| [dev-templates](https://github.com/the-nix-way/dev-templates) | Development templates                  |
+| [Vimjoyer](https://www.youtube.com/@vimjoyer)                 | Short, simple, concise guides and info |
 
 <!-- </details> -->
 

@@ -5,3 +5,6 @@ result-*
 
 [Bb]ackup
 [Bb]ackup/*
++
++# Hardware-specific configuration, generated per-machine
++/hosts/*/hardware-configuration.nix
